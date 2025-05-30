@@ -3,7 +3,7 @@ import 'dart:math';
 List<List<String>> wordPairs = [
   ['Cat', 'Tiger'],
   ['Coffee', 'Tea'],
-  ['Ship', 'Boat']
+  ['Ship', 'Boat'],
 ];
 
 List<String> getRandomWordPair() {

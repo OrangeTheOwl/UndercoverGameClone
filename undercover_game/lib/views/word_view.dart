@@ -19,8 +19,6 @@ class WordViewState extends State<WordView> {
   Widget build(BuildContext context) {
     final players = context.read<GameViewModel>().players;
     final player = players[currentIndex];
-    
-
 
     return Scaffold(
       appBar: AppBar(title: Text('Player ${currentIndex + 1}')),
@@ -30,11 +28,16 @@ class WordViewState extends State<WordView> {
           children: [
             Text('Name: ${player.name}', style: TextStyle(fontSize: 20)),
             SizedBox(height: 10),
-            isWordVisible ? Text('Your word: ${player.word}', style: TextStyle(fontSize: 20)) : Text('Your word is hidden', style: TextStyle(fontSize: 20)),
+            isWordVisible
+                ? Text(
+                    'Your word: ${player.word}',
+                    style: TextStyle(fontSize: 20),
+                  )
+                : Text('Your word is hidden', style: TextStyle(fontSize: 20)),
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                if(!isWordVisible){
+                if (!isWordVisible) {
                   setState(() => isWordVisible = true);
                 }
               },
@@ -43,10 +46,8 @@ class WordViewState extends State<WordView> {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                if(!isWordVisible){
-                  
-                }
-                else{
+                if (!isWordVisible) {
+                } else {
                   if (currentIndex < players.length - 1) {
                     setState(() => currentIndex++);
                     setState(() => isWordVisible = false);
@@ -59,8 +60,11 @@ class WordViewState extends State<WordView> {
                 }
               },
               child: Text(
-                  currentIndex < players.length - 1 ? 'Next Player' : 'Start Game'),
-            )
+                currentIndex < players.length - 1
+                    ? 'Next Player'
+                    : 'Start Game',
+              ),
+            ),
           ],
         ),
       ),

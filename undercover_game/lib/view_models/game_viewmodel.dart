@@ -3,12 +3,19 @@ import 'package:flutter/material.dart';
 import '../models/player_model.dart';
 import '../utils/word_pairs.dart';
 
-
 class GameViewModel extends ChangeNotifier {
   List<Player> players = [];
   int currentPlayerIndex = 0;
-  String? eliminatedThisRound;
   Player? undercoverPlayer;
+
+  void createPlayers(int playerCount) {
+    for (int i = 0; i < playerCount; i++) {
+      players.add(Player(name: ""));
+    }
+    assignRoles();
+    notifyListeners();
+  }
+
   void setPlayers(List<String> names) {
     players = names.map((name) => Player(name: name)).toList();
     assignRoles();
@@ -35,12 +42,6 @@ class GameViewModel extends ChangeNotifier {
   void eliminate(String name) {
     final target = players.firstWhere((p) => p.name == name);
     target.isEliminated = true;
-    eliminatedThisRound = name;
-    notifyListeners();
-  }
-
-  void resetElimination() {
-    eliminatedThisRound = null;
     notifyListeners();
   }
 

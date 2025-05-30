@@ -20,34 +20,40 @@ class VotingViewState extends State<VotingView> {
   Widget build(BuildContext context) {
     final players = context.watch<GameViewModel>().activePlayers;
 
-
     return Scaffold(
       appBar: AppBar(title: Text("voting screen")),
       body: Column(
         children: [
-          Expanded(child: ListView.builder(
-            itemCount: players.length,
-            itemBuilder: (context, index) => Center(
-              child: Padding(padding: const EdgeInsets.all(20.0),
-                child: TextButton(onPressed: (){
-                  context.read<GameViewModel>().eliminate(players.elementAt(index).name);
-                  if(context.read<GameViewModel>().checkCitizensWin() || context.read<GameViewModel>().checkUndercoverWin()){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => WinningView()),
-                    );
-                  }
-                  else{
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => DescriptionView()),
-                    );
-                  }
-                }, child: Text('Player ${players.elementAt(index).name}'))
-              )
-            )
-          
-          ))
+          Expanded(
+            child: ListView.builder(
+              itemCount: players.length,
+              itemBuilder: (context, index) => Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextButton(
+                    onPressed: () {
+                      context.read<GameViewModel>().eliminate(
+                        players.elementAt(index).name,
+                      );
+                      if (context.read<GameViewModel>().checkCitizensWin() ||
+                          context.read<GameViewModel>().checkUndercoverWin()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => WinningView()),
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => DescriptionView()),
+                        );
+                      }
+                    },
+                    child: Text('Player ${players.elementAt(index).name}'),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

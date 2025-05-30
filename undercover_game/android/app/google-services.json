@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1003223150542",
+    "firebase_url": "https://undercoverclone-b8ecf-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "undercoverclone-b8ecf",
+    "storage_bucket": "undercoverclone-b8ecf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003223150542:android:160fce32148c4b4c9c859f",
+        "android_client_info": {
+          "package_name": "com.example.undercover_game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu1rpKkGfMWh_kJj6G9QOIWsXe4Es1UU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
