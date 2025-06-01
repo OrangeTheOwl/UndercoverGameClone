@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:undercover_game/view_models/game_viewmodel.dart';
-import 'home_view.dart';
 import 'package:provider/provider.dart';
 import 'word_view.dart';
 

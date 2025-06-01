@@ -8,7 +8,12 @@ class GameViewModel extends ChangeNotifier {
   int currentPlayerIndex = 0;
   Player? undercoverPlayer;
 
+  bool isNameTaken(String name) {
+    return players.any((p) => p.name == name);
+  }
+
   void createPlayers(int playerCount) {
+    players.clear();
     for (int i = 0; i < playerCount; i++) {
       players.add(Player(name: ""));
     }
@@ -16,10 +21,13 @@ class GameViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setPlayers(List<String> names) {
-    players = names.map((name) => Player(name: name)).toList();
-    assignRoles();
+  void setPlayerName(int index, String name) {
+    players[index].name = name;
     notifyListeners();
+  }
+
+  String getPlayerName(int index) {
+    return players[index].name;
   }
 
   void assignRoles() {
@@ -39,10 +47,42 @@ class GameViewModel extends ChangeNotifier {
     }
   }
 
-  void eliminate(String name) {
+  void addVote(String name) {
     final target = players.firstWhere((p) => p.name == name);
-    target.isEliminated = true;
+    target.votes++;
+    //checkVotes();
+    // notifyListeners();
+  }
+
+  String checkVotes() {
+    var mostVotes = players[0].votes;
+    var mostVotesIndex = 0;
+
+    for (var i = 0; i < players.length; i++) {
+      // Checking for largest value in the list
+      if (players[i].votes > mostVotes) {
+        mostVotes = players[i].votes;
+        mostVotesIndex = i;
+      }
+    }
+
+    for (var i = 0; i < players.length; i++) {
+      if (i == mostVotesIndex) {
+        continue;
+      } else if (players[i].votes == mostVotes) {
+        return "Tie";
+      }
+    }
+
+    players[mostVotesIndex].isEliminated = true;
     notifyListeners();
+    return players[mostVotesIndex].name;
+  }
+
+  void resetVotes() {
+    for (var i = 0; i < players.length; i++) {
+      players[i].votes = 0;
+    }
   }
 
   bool checkCitizensWin() {

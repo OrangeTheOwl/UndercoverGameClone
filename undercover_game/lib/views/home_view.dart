@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:undercover_game/views/online_mode/join_view.dart';
 import 'setup_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -63,17 +62,15 @@ class HomeView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => JoinView()),
-                        );
-                      },
+                      onPressed: () {},
                       icon: Icon(Icons.wifi, size: 30),
                       label: Wrap(
                         direction: Axis.vertical,
                         children: [
-                          Text("Online mode", style: TextStyle(fontSize: 20)),
+                          Text(
+                            "Online mode (disabled)",
+                            style: TextStyle(fontSize: 20),
+                          ),
                           Text(
                             "Play online with your friends or\nwith strangers.",
                           ),
